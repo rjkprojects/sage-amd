@@ -1,0 +1,11 @@
+{
+  "name": "assignment",
+  "kpi": [
+    "Verify constructive alignment with module learning outcomes",
+    "Ensure assessment targets higher-order thinking (Bloom's Taxonomy)",
+    "Check for practical application and real-world employability skills",
+    "Assess clarity of feedback opportunities and practice exercises"
+  ],
+  "instruction": "Analyze the uploaded assignment brief. Ensure it constructively aligns with the module's learning outcomes. Evaluate the cognitive complexity to ensure it tests higher-order thinking rather than just rote memorization. Verify that the task reflects current industry practices and promotes employability skills.",
+  "requires_search": true
+}

@@ -1,0 +1,11 @@
+{
+  "name": "lesson_plan",
+  "kpi": [
+    "Ensure clear alignment with course syllabus and curriculum mapping",
+    "Verify support for cognitive, affective, and practical learning domains",
+    "Confirm progressive difficulty level using Bloom's Taxonomy",
+    "Check for problem-based learning and interactive engagement opportunities"
+  ],
+  "instruction": "Analyze the uploaded lesson plan. Compare it against the module baseline. Ensure the weekly topics align with the syllabus, assess if teaching activities support the stated learning domains, and verify a progressive difficulty structure. Look for opportunities to improve interactive or problem-based learning.",
+  "requires_search": true
+}

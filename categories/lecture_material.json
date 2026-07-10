@@ -1,0 +1,11 @@
+{
+  "name": "lecture_material",
+  "kpi": [
+    "Check that the content is a relevant, appropriate stepping stone toward the module learning outcomes for its week position",
+    "Verify key topics and concepts are current and up-to-date (>= 2020 preferred, use web search to confirm)",
+    "Assess whether real-world examples, case studies, or practical applications are present",
+    "Do NOT expect a single week's lecture to cover all module learning outcomes — that is a semester-wide goal"
+  ],
+  "instruction": "Analyze the uploaded lecture material (slides, notes, or any format). DO NOT penalize formatting, structure, or layout. CRITICAL: The module learning outcomes are the SEMESTER-WIDE destination, not a per-week checklist. A single week's lecture — especially early weeks — is only expected to be a relevant, logical stepping stone toward those outcomes. Ask: 'Is this week's content appropriate for where this module is in its progression, and does it contribute toward the MLOs over time?' Week 1 being foundational/introductory is completely normal and expected. Use web_audit to verify currency of content. Produce 'ok' or 'need-review' verdict.",
+  "requires_search": true
+}

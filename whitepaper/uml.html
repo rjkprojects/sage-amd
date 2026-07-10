@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>S.A.G.E. — UML &amp; Database Diagrams</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+  <!-- Load Mermaid.js for beautiful system diagrams -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'neutral',
+      securityLevel: 'loose',
+      flowchart: { useMaxWidth: true, htmlLabels: true, curve: 'basis' }
+    });
+  </script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    :root {
+      --sage: #1e3d14;
+      --sage-mid: #396224;
+      --sage-light: #edf5e6;
+      --sage-border: #a3d368;
+      --sage-muted: #5e8d3c;
+      --bg: #fbfbfa;
+      --surface: #ffffff;
+      --border: #e2dfd7;
+      --text: #121210;
+      --text-2: #3d3d3a;
+      --text-3: #7c7c75;
+      --nav-w: 280px;
+    }
+
+    a {
+      font: inherit;
+      color: var(--sage-mid);
+      text-decoration: underline;
+    }
+
+    a:hover {
+      color: var(--sage);
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: -apple-system, 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.7
+    }
+
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: var(--nav-w);
+      height: 100vh;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+      z-index: 100;
+      padding: 2rem 0 3rem
+    }
+
+    .nav-brand {
+      padding: 0 1.5rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1rem
+    }
+
+    .nav-wordmark {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      color: var(--text)
+    }
+
+    .nav-sub {
+      font-size: 11px;
+      color: var(--text-3);
+      margin-top: 3px;
+      letter-spacing: .02em
+    }
+
+    .nav-group {
+      margin-top: .5rem
+    }
+
+    .nav-group-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      padding: .75rem 1.5rem .3rem
+    }
+
+    .nav a {
+      display: block;
+      padding: .38rem 1.5rem;
+      font-size: 12.5px;
+      color: var(--text-2);
+      text-decoration: none;
+      border-left: 2px solid transparent;
+      transition: all .15s;
+      line-height: 1.5
+    }
+
+    .nav a:hover {
+      color: var(--text);
+      background: #F5F4F0
+    }
+
+    .nav a.active {
+      color: var(--sage);
+      border-left-color: var(--sage);
+      font-weight: 600;
+      background: var(--sage-light)
+    }
+
+    .main {
+      margin-left: var(--nav-w);
+      padding: 0 5rem 8rem 5rem;
+      max-width: calc(var(--nav-w) + 950px)
+    }
+
+    .hero {
+      padding: 5rem 0 4rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 5rem
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--sage-muted);
+      margin-bottom: 1.25rem
+    }
+
+    .hero-title {
+      font-size: 42px;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -.03em;
+      color: var(--text);
+      margin-bottom: .75rem
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      color: var(--text-2);
+      line-height: 1.6;
+      max-width: 750px;
+      margin-bottom: 2rem
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 2.5rem;
+      flex-wrap: wrap
+    }
+
+    .hero-meta-item {
+      font-size: 12px;
+      color: var(--text-3)
+    }
+
+    .hero-meta-item strong {
+      display: block;
+      font-size: 13px;
+      color: var(--text-2);
+      font-weight: 500;
+      margin-top: 2px
+    }
+
+    .section {
+      margin-bottom: 5rem;
+      scroll-margin-top: 2.5rem
+    }
+
+    .s-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--sage-muted);
+      margin-bottom: .75rem
+    }
+
+    .s-title {
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: -.02em;
+      color: var(--text);
+      margin-bottom: 1rem;
+      line-height: 1.2
+    }
+
+    .s-intro {
+      font-size: 14.5px;
+      color: var(--text-2);
+      line-height: 1.85;
+      margin-bottom: 2rem;
+      max-width: 750px
+    }
+
+    p {
+      margin-bottom: 1.25rem;
+      color: var(--text-2);
+      font-size: 14.5px;
+    }
+
+    /* Diagram Container styling */
+    .diagram-container {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2.5rem;
+      margin: 1.5rem 0 3rem 0;
+      display: flex;
+      justify-content: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+      overflow-x: auto;
+    }
+
+    .diagram-container .mermaid {
+      width: 100%;
+      min-width: 600px;
+    }
+
+    .callout {
+      background: var(--sage-light);
+      border-left: 4px solid var(--sage);
+      padding: 1.25rem 1.5rem;
+      border-radius: 0 12px 12px 0;
+      margin: 1.5rem 0;
+    }
+
+    .callout p {
+      margin-bottom: 0;
+      color: var(--sage);
+      font-weight: 500;
+    }
+
+    @media(max-width:900px) {
+      .nav {
+        transform: translateX(-100%);
+        transition: transform .25s ease
+      }
+
+      .nav.open {
+        transform: translateX(0)
+      }
+
+      .overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, .35);
+        z-index: 99
+      }
+
+      .overlay.open {
+        display: block
+      }
+
+      .hamburger {
+        display: flex;
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        z-index: 200;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 8px 10px;
+        cursor: pointer;
+        gap: 5px;
+        flex-direction: column;
+        justify-content: center
+      }
+
+      .hamburger span {
+        display: block;
+        width: 18px;
+        height: 1.5px;
+        background: var(--text);
+        border-radius: 2px
+      }
+
+      .main {
+        margin-left: 0;
+        padding: 2rem 1.5rem 6rem
+      }
+    }
+
+    @media(min-width:901px) {
+      .hamburger {
+        display: none
+      }
+
+      .overlay {
+        display: none !important
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="hamburger" id="burger" onclick="toggleNav()"><span></span><span></span><span></span></div>
+  <div class="overlay" id="overlay" onclick="toggleNav()"></div>
+
+  <nav class="nav" id="sidenav">
+    <div class="nav-brand">
+      <div class="nav-wordmark">S.A.G.E.</div>
+      <div class="nav-sub">UML Specs &middot; AMD Act II</div>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-label">Whitepaper</div>
+      <a href="index.html" class="nav-link">Main Whitepaper</a>
+      <a href="prd.html" class="nav-link">Product Specs (PRD)</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-label">UML Navigation</div>
+      <a href="#intro" class="nav-link">Top Control Info</a>
+      <a href="#use-case" class="nav-link">1. Use Case Diagram</a>
+      <a href="#sequence" class="nav-link">2. Sequence Diagram</a>
+      <a href="#erd" class="nav-link">3. Database Schema (ERD)</a>
+      <a href="#agent-flow" class="nav-link">4. Agent Execution Flow</a>
+    </div>
+  </nav>
+
+  <main class="main">
+
+    <div class="hero" id="intro">
+      <div class="hero-eyebrow">Architecture &amp; System Diagrams &nbsp;&middot;&nbsp; S.A.G.E.</div>
+      <div class="hero-title" style="font-family: 'Space Grotesk', sans-serif; font-weight: 700;">System Design &amp; UML Specs</div>
+      <div class="hero-sub">Visual blueprints of user interactions, backend agent loops, database models, and server-side routing pathways.</div>
+      
+      <div class="hero-meta">
+        <div class="hero-meta-item">Drawn via<strong>Mermaid.js (SVG Vector)</strong></div>
+        <div class="hero-meta-item">Design Standard<strong>UML 2.5 / Crow's Foot Notation</strong></div>
+        <div class="hero-meta-item">Engine Platform<strong>Fireworks AI + Brave Web Audit</strong></div>
+        <div class="hero-meta-item">Last Checked<strong>July 2026</strong></div>
+      </div>
+    </div>
+
+    <div class="section" id="use-case">
+      <div class="s-label">Section 1</div>
+      <div class="s-title">1. Use Case Diagram</div>
+      <p>This diagram models the system boundaries and showcases how the three distinct academic actors (Academic Lead, Coordinator, and Lecturer) securely access features.</p>
+      
+      <div class="diagram-container">
+        <div class="mermaid">
+        flowchart LR
+          subgraph Actors
+            AL["🎓 Academic Lead"]
+            CO["📂 Coordinator"]
+            LE["👨‍🏫 Lecturer"]
+          end
+
+          subgraph SAGE_System_Boundary ["S.A.G.E. Platform Boundary"]
+            UC1("Authenticate & Portal Routing")
+            UC2("Ask S.A.G.E. Chat")
+            UC3("Monitor Audit Dashboard")
+            UC4("Drop files into /repository")
+            UC5("Trigger Audit Agent")
+            UC6("Read audit reports")
+          end
+
+          AL --> UC1
+          AL --> UC2
+          AL --> UC3
+          AL --> UC6
+
+          CO --> UC1
+          CO --> UC4
+          CO --> UC5
+          CO --> UC6
+
+          LE --> UC1
+          LE --> UC6
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="sequence">
+      <div class="s-label">Section 2</div>
+      <div class="s-title">2. Ingestion &amp; Audit Sequence Flow</div>
+      <p>The sequence diagram tracks the interaction between components during an audit lifecycle: scanning, baseline retrieval, AI evaluation with live search tool, and dashboard updates.</p>
+      
+      <div class="diagram-container">
+        <div class="mermaid">
+        sequenceDiagram
+          autonumber
+          actor Coordinator as 📂 Coordinator
+          participant PHP as 🖥️ PHP Dashboard (coordinator.php)
+          participant DB as 🗄️ MySQL Database
+          participant Agent as 🤖 SAGE Agent (agent.php)
+          participant FW as 🎆 Fireworks AI (GLM-5p2)
+          participant BS as 🔍 Brave Search API
+
+          Coordinator->>PHP: 1. Drop files into repository/ folders
+          Coordinator->>PHP: 2. Click "Audit" button
+          PHP->>Agent: 3. Invoke Agent Core (target file path)
+          Agent->>DB: 4. Query Module Learning Outcomes (MLOs)
+          DB-->>Agent: 5. Return Module Baselines
+          
+          loop Autonomous Tool Evaluation Loop
+            Agent->>FW: 6. Send System Prompt + Document + MLOs
+            FW-->>Agent: 7. Output XML Tool Call: web_audit(query)
+            Agent->>BS: 8. Execute live Web Search via HTTP cURL
+            BS-->>Agent: 9. Return Search Snippets
+            Agent->>FW: 10. Feed Web results back to AI context
+          end
+
+          FW-->>Agent: 11. Output Finalized JSON Report & Score
+          Agent->>DB: 12. Save Audit Results to audit_results table
+          DB-->>Agent: 13. Confirm Write
+          Agent-->>PHP: 14. Return success message
+          PHP-->>Coordinator: 15. Render audited "View Report" button
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="erd">
+      <div class="s-label">Section 3</div>
+      <div class="s-title">3. Entity Relationship Diagram (ERD)</div>
+      <p>This Crow's foot ERD shows the database normalization. Relational anchors guarantee data safety and dashboard mapping.</p>
+      
+      <div class="diagram-container">
+        <div class="mermaid">
+        erDiagram
+          users {
+            int id PK
+            varchar username UK
+            varchar password_hash
+            varchar role
+            timestamp created_at
+          }
+          faculties {
+            int id PK
+            varchar name
+            varchar code UK
+            timestamp created_at
+          }
+          modules {
+            int id PK
+            varchar module_code UK
+            int faculty_id FK
+            varchar name
+            varchar code
+            int credits
+            int level
+            timestamp created_at
+          }
+          module_learning_outcomes {
+            int id PK
+            varchar module_code FK
+            int outcome_number
+            longtext outcome_text
+            timestamp created_at
+          }
+          module_assessments {
+            int id PK
+            varchar module_code FK
+            int assessment_number
+            varchar assessment_type
+            decimal weight_percentage
+            longtext description
+            int due_week
+            timestamp created_at
+          }
+          audit_results {
+            int id PK
+            varchar module_code FK
+            varchar doc_type
+            varchar file_path UK
+            int score
+            text suggestions_json
+            varchar status
+            timestamp created_at
+          }
+          chat_logs {
+            int id PK
+            int user_id FK
+            varchar role
+            varchar message_type
+            longtext message_text
+            timestamp created_at
+          }
+
+          faculties ||--o{ modules : "hosts"
+          modules ||--o{ module_learning_outcomes : "defines"
+          modules ||--o{ module_assessments : "specifies"
+          modules ||--o{ audit_results : "audits"
+          users ||--o{ chat_logs : "creates"
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="agent-flow">
+      <div class="s-label">Section 4</div>
+      <div class="s-title">4. Agent Decision Control Flowchart</div>
+      <p>This flowchart maps the internal branch decisions executed inside the autonomous agent pipeline (<code>agent.php</code>) until completion.</p>
+      
+      <div class="diagram-container">
+        <div class="mermaid">
+        flowchart TD
+          A([Start Audit]) --> B[Read file contents & extract module parameters]
+          B --> C[Fetch MLO Baselines & Assessments from MySQL]
+          C --> D[Initialize Conversation History & System Guidelines]
+          D --> E[Call Fireworks AI GLM-5p2]
+          E --> F{Output contains XML call?}
+          F -- Yes: web_audit --> G[Parse query & call Brave Search API via cURL]
+          G --> H[Inject Brave results into context]
+          H --> E
+          F -- Yes: save_audit_result --> I[Parse JSON payload, score, recommendations]
+          I --> J[Write record to MySQL audit_results]
+          J --> K([End Audit - Notify Dashboard])
+          F -- No XML / Text answer --> L{Loop count < 5?}
+          L -- Yes --> M[Inject directive to use XML tool calls]
+          M --> E
+          L -- No --> N[Force fallback JSON parsing]
+          N --> J
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    function toggleNav() {
+      document.getElementById('sidenav').classList.toggle('open');
+      document.getElementById('overlay').classList.toggle('open');
+    }
+    
+    // Smooth scroll and active state highlighting
+    const sections = document.querySelectorAll('.section, .hero');
+    const links = document.querySelectorAll('.nav-link');
+    const obs = new IntersectionObserver(e => {
+      e.forEach(x => {
+        if (x.isIntersecting) {
+          links.forEach(l => l.classList.remove('active'));
+          const a = document.querySelector(`.nav-link[href="#${x.target.id}"]`);
+          if (a) a.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    sections.forEach(s => obs.observe(s));
+  </script>
+</body>
+
+</html>
