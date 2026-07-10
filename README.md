@@ -105,6 +105,8 @@ S.A.G.E. features three distinct user portals based on academic roles. Below is 
 ### 🔑 Demo Login Credentials
 For testing and demonstration, use the following credentials (defined in `db/sage_amd.sql`):
 
+Hackathon Demo: https://elo.xo.je/sage/
+
 | Role | Username | Password | Purpose |
 | :--- | :--- | :--- | :--- |
 | **Academic Lead** | `lead` | `123` | Curriculum-wide oversight and interactive S.A.G.E. Chat |
